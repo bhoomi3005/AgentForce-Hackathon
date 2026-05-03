@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+        <types>
+        <!-- Standard or Visualforce Sites -->
+        <members>Electra_Cars</members>
+        <name>CustomSite</name>
+    </types>
+    <types>
+        <!-- The visual/branding part of the site -->
+        <members>Electra_Cars1</members> <!-- Note: often has a '1' at the end -->
+        <name>SiteDotCom</name>
+    </types>
+    <version>66.0</version>
+</Package>
