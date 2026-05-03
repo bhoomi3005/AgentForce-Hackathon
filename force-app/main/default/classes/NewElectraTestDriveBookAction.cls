@@ -106,9 +106,6 @@ public without sharing class NewElectraTestDriveBookAction {
             Preferred_Date__c      = req.preferredDate,
             Preferred_Time_Slot__c = req.timeSlot,
             Dealership__c          = dealer.Id
-            // Assuming a lookup field exists to link back to the Test Drive
-            // If the field name differs (e.g., Test_Drive__c), update below:
-         //   Test_Drive__c          = td.Id 
         );
         insert slot;
         return slot;
