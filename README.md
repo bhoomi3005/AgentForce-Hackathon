@@ -1,10 +1,12 @@
 # Salesforce DX Project: Next Steps
 
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Here is the link for functionality design of the Project
+https://docs.google.com/document/d/1JISSfxSmL_QOjE9GxUbcHaaXw3oz-eUK/edit?usp=sharing&ouid=117697299612778376407&rtpof=true&sd=true
 
 ## How Do You Plan to Deploy Your Changes?
-
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+This is the document link for tesing the Agent functionality where you can find the prompts to test the agent.
+https://docs.google.com/document/d/1E0uhGXozHEWgk2CcPP925aomzM0jq19h/edit?usp=sharing&ouid=117697299612778376407&rtpof=true&sd=true
 
 ## Configure Your Salesforce DX Project
 
