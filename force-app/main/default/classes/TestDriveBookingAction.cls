@@ -41,23 +41,18 @@ public without sharing class TestDriveBookingAction {
                     dealer = getFallbackAccount();
                 }
 
-                // 4. Resolve vehicle
-             //   Product2 vehicle = resolveVehicle(req.vehicleModelId);
-
-                // 5. Create TestDrive__c
+                // 4. Create TestDrive__c
                 Booking_Slot__c slot = createBookingSlot(req, dealer);
-                TestDrive__c td = createTestDrive(req, lead, dealer, slot.Id);
-                // This tracks the specific appointment time at the dealership
-               
+                TestDrive__c td = createTestDrive(req, lead, dealer, slot.Id);               
 
-                // 6. Update Lead with dealership assignment
+                // 5. Update Lead with dealership assignment
                 lead.Assigned_Dealership__c = dealer.Id;
                 update lead;
 
-                // 7. Create audit record
+                // 6. Create audit record
                 createAuditRecord(req, lead.Id, td.Id, 'Booked');
                 
-                // 8. Fire and forget the DocuSign retrieval
+                // 7. Fire and forget the DocuSign retrieval
                 if (String.isNotBlank(td.Envelope_Id__c)) {
                  System.enqueueJob(new DocuSignAttachmentQueueable(td.Id, td.Envelope_Id__c));
                 } 
@@ -106,9 +101,6 @@ public without sharing class TestDriveBookingAction {
             Preferred_Date__c      = req.preferredDate,
             Preferred_Time_Slot__c = req.timeSlot,
             Dealership__c          = dealer.Id
-            // Assuming a lookup field exists to link back to the Test Drive
-            // If the field name differs (e.g., Test_Drive__c), update below:
-         //   Test_Drive__c          = td.Id 
         );
         insert slot;
         return slot;
@@ -133,7 +125,6 @@ public without sharing class TestDriveBookingAction {
             lead = existing[0];
             // Update mutable fields from latest conversation
             lead.Phone             = String.isNotBlank(req.phone)            ? req.phone            : lead.MobilePhone;
-          //  lead.Vehicle_Interest__c     = String.isNotBlank(req.showroomVehicleId) ? req.showroomVehicleId   : lead.Vehicle_Interest__c;
             lead.Preferred_Channel__c    = String.isNotBlank(req.preferredChannel) ? req.preferredChannel : lead.Preferred_Channel__c;
             lead.Postal_Code__c              = String.isNotBlank(req.zipCode)           ? req.zipCode          : lead.PostalCode;
             lead.AgentConversation_ID__c = req.agentSessionId;
@@ -144,7 +135,6 @@ public without sharing class TestDriveBookingAction {
                 LastName                 = String.isNotBlank(req.lastName) ? req.lastName : 'Unknown',
                 Email                    = req.email,
                 Phone              = req.phone,
-               // Vehicle_Interest__c      = req.showroomVehicleId,
                 Preferred_Channel__c     = req.preferredChannel,
                 Postal_Code__c               = req.zipCode,
                 LeadSource               = 'Agentforce Web Agent',
@@ -194,7 +184,6 @@ public without sharing class TestDriveBookingAction {
     private static TestDrive__c createTestDrive(Request req, Lead lead, Account dealer, Id slotId) {
         TestDrive__c td = new TestDrive__c(
             Lead__c                 = lead.Id,
-        //    Showroom_Vehicle__c     = req.showroomVehicleId != null ? req.showroomVehicleId : null,
             Dealership__c           = dealer.Id,
             Preferred_Date__c       = req.preferredDate,
             Preferred_Time_Slot__c  = req.timeSlot,
